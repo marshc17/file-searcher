@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.foldersGroupBox = new System.Windows.Forms.GroupBox();
-            this.foldersListView = new System.Windows.Forms.ListView();
             this.addFolderButton = new System.Windows.Forms.Button();
             this.removeFolderButton = new System.Windows.Forms.Button();
+            this.foldersListView = new System.Windows.Forms.ListView();
             this.SearchTermsGroupBox = new System.Windows.Forms.GroupBox();
-            this.searchTermsListView = new System.Windows.Forms.ListView();
-            this.addSearchTermButton = new System.Windows.Forms.Button();
             this.removeSearchTermButton = new System.Windows.Forms.Button();
+            this.addSearchTermButton = new System.Windows.Forms.Button();
+            this.searchTermsListView = new System.Windows.Forms.ListView();
             this.searchTypeGroupBox = new System.Windows.Forms.GroupBox();
-            this.depthFirstSearchRadioButton = new System.Windows.Forms.RadioButton();
             this.breadthFirstSearchRadioButton = new System.Windows.Forms.RadioButton();
+            this.depthFirstSearchRadioButton = new System.Windows.Forms.RadioButton();
             this.searchButton = new System.Windows.Forms.Button();
             this.foldersGroupBox.SuspendLayout();
             this.SearchTermsGroupBox.SuspendLayout();
@@ -47,8 +47,7 @@
             // 
             // foldersGroupBox
             // 
-            this.foldersGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.foldersGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.foldersGroupBox.Controls.Add(this.addFolderButton);
             this.foldersGroupBox.Controls.Add(this.removeFolderButton);
@@ -59,17 +58,6 @@
             this.foldersGroupBox.TabIndex = 0;
             this.foldersGroupBox.TabStop = false;
             this.foldersGroupBox.Text = "Root Folders to Search";
-            // 
-            // foldersListView
-            // 
-            this.foldersListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.foldersListView.Location = new System.Drawing.Point(7, 20);
-            this.foldersListView.Name = "foldersListView";
-            this.foldersListView.Size = new System.Drawing.Size(447, 100);
-            this.foldersListView.TabIndex = 0;
-            this.foldersListView.UseCompatibleStateImageBehavior = false;
             // 
             // addFolderButton
             // 
@@ -91,9 +79,21 @@
             this.removeFolderButton.Text = "Remove";
             this.removeFolderButton.UseVisualStyleBackColor = true;
             // 
+            // foldersListView
+            // 
+            this.foldersListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.foldersListView.Location = new System.Drawing.Point(7, 20);
+            this.foldersListView.Name = "foldersListView";
+            this.foldersListView.Size = new System.Drawing.Size(447, 100);
+            this.foldersListView.TabIndex = 0;
+            this.foldersListView.UseCompatibleStateImageBehavior = false;
+            // 
             // SearchTermsGroupBox
             // 
-            this.SearchTermsGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.SearchTermsGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SearchTermsGroupBox.Controls.Add(this.removeSearchTermButton);
             this.SearchTermsGroupBox.Controls.Add(this.addSearchTermButton);
@@ -105,16 +105,15 @@
             this.SearchTermsGroupBox.TabStop = false;
             this.SearchTermsGroupBox.Text = "Search Terms";
             // 
-            // searchTermsListView
+            // removeSearchTermButton
             // 
-            this.searchTermsListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchTermsListView.Location = new System.Drawing.Point(7, 20);
-            this.searchTermsListView.Name = "searchTermsListView";
-            this.searchTermsListView.Size = new System.Drawing.Size(447, 100);
-            this.searchTermsListView.TabIndex = 0;
-            this.searchTermsListView.UseCompatibleStateImageBehavior = false;
+            this.removeSearchTermButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.removeSearchTermButton.Location = new System.Drawing.Point(88, 126);
+            this.removeSearchTermButton.Name = "removeSearchTermButton";
+            this.removeSearchTermButton.Size = new System.Drawing.Size(75, 23);
+            this.removeSearchTermButton.TabIndex = 2;
+            this.removeSearchTermButton.Text = "Remove";
+            this.removeSearchTermButton.UseVisualStyleBackColor = true;
             // 
             // addSearchTermButton
             // 
@@ -126,15 +125,16 @@
             this.addSearchTermButton.Text = "Add";
             this.addSearchTermButton.UseVisualStyleBackColor = true;
             // 
-            // removeSearchTermButton
+            // searchTermsListView
             // 
-            this.removeSearchTermButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.removeSearchTermButton.Location = new System.Drawing.Point(88, 126);
-            this.removeSearchTermButton.Name = "removeSearchTermButton";
-            this.removeSearchTermButton.Size = new System.Drawing.Size(75, 23);
-            this.removeSearchTermButton.TabIndex = 2;
-            this.removeSearchTermButton.Text = "Remove";
-            this.removeSearchTermButton.UseVisualStyleBackColor = true;
+            this.searchTermsListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchTermsListView.Location = new System.Drawing.Point(7, 20);
+            this.searchTermsListView.Name = "searchTermsListView";
+            this.searchTermsListView.Size = new System.Drawing.Size(447, 100);
+            this.searchTermsListView.TabIndex = 0;
+            this.searchTermsListView.UseCompatibleStateImageBehavior = false;
             // 
             // searchTypeGroupBox
             // 
@@ -149,17 +149,6 @@
             this.searchTypeGroupBox.TabStop = false;
             this.searchTypeGroupBox.Text = "Search Type";
             // 
-            // depthFirstSearchRadioButton
-            // 
-            this.depthFirstSearchRadioButton.AutoSize = true;
-            this.depthFirstSearchRadioButton.Location = new System.Drawing.Point(6, 19);
-            this.depthFirstSearchRadioButton.Name = "depthFirstSearchRadioButton";
-            this.depthFirstSearchRadioButton.Size = new System.Drawing.Size(113, 17);
-            this.depthFirstSearchRadioButton.TabIndex = 0;
-            this.depthFirstSearchRadioButton.TabStop = true;
-            this.depthFirstSearchRadioButton.Text = "Depth-First Search";
-            this.depthFirstSearchRadioButton.UseVisualStyleBackColor = true;
-            // 
             // breadthFirstSearchRadioButton
             // 
             this.breadthFirstSearchRadioButton.AutoSize = true;
@@ -170,6 +159,17 @@
             this.breadthFirstSearchRadioButton.TabStop = true;
             this.breadthFirstSearchRadioButton.Text = "Breadth-First Search";
             this.breadthFirstSearchRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // depthFirstSearchRadioButton
+            // 
+            this.depthFirstSearchRadioButton.AutoSize = true;
+            this.depthFirstSearchRadioButton.Location = new System.Drawing.Point(6, 19);
+            this.depthFirstSearchRadioButton.Name = "depthFirstSearchRadioButton";
+            this.depthFirstSearchRadioButton.Size = new System.Drawing.Size(113, 17);
+            this.depthFirstSearchRadioButton.TabIndex = 0;
+            this.depthFirstSearchRadioButton.TabStop = true;
+            this.depthFirstSearchRadioButton.Text = "Depth-First Search";
+            this.depthFirstSearchRadioButton.UseVisualStyleBackColor = true;
             // 
             // searchButton
             // 
@@ -190,6 +190,7 @@
             this.Controls.Add(this.searchTypeGroupBox);
             this.Controls.Add(this.SearchTermsGroupBox);
             this.Controls.Add(this.foldersGroupBox);
+            this.MinimumSize = new System.Drawing.Size(209, 479);
             this.Name = "FileSearcherForm";
             this.Text = "File Searcher";
             this.foldersGroupBox.ResumeLayout(false);
