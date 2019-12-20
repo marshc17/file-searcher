@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace FileSearcher
 {
-    public partial class Form1 : Form
+    public partial class FileSearcherForm : Form
     {
-        public Form1()
+        public FileSearcherForm()
         {
             InitializeComponent();
         }
