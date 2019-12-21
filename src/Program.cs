@@ -16,7 +16,7 @@ namespace FileSearcher
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FileSearcherForm());
+            Application.Run(new MainForm());
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace FileSearcher
 {
-    partial class FileSearcherForm
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -117,6 +117,7 @@
             this.removeSearchTermButton.TabIndex = 2;
             this.removeSearchTermButton.Text = "Remove";
             this.removeSearchTermButton.UseVisualStyleBackColor = true;
+            this.removeSearchTermButton.Click += new System.EventHandler(this.removeSearchTermButton_Click);
             // 
             // addSearchTermButton
             // 
@@ -127,6 +128,7 @@
             this.addSearchTermButton.TabIndex = 1;
             this.addSearchTermButton.Text = "Add";
             this.addSearchTermButton.UseVisualStyleBackColor = true;
+            this.addSearchTermButton.Click += new System.EventHandler(this.addSearchTermButton_Click);
             // 
             // searchTermsListView
             // 
@@ -138,6 +140,7 @@
             this.searchTermsListView.Size = new System.Drawing.Size(447, 100);
             this.searchTermsListView.TabIndex = 0;
             this.searchTermsListView.UseCompatibleStateImageBehavior = false;
+            this.searchTermsListView.View = System.Windows.Forms.View.Details;
             // 
             // searchTypeGroupBox
             // 
@@ -166,6 +169,7 @@
             // depthFirstSearchRadioButton
             // 
             this.depthFirstSearchRadioButton.AutoSize = true;
+            this.depthFirstSearchRadioButton.Checked = true;
             this.depthFirstSearchRadioButton.Location = new System.Drawing.Point(6, 19);
             this.depthFirstSearchRadioButton.Name = "depthFirstSearchRadioButton";
             this.depthFirstSearchRadioButton.Size = new System.Drawing.Size(113, 17);
@@ -183,8 +187,9 @@
             this.searchButton.TabIndex = 3;
             this.searchButton.Text = "Search";
             this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
             // 
-            // FileSearcherForm
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -194,8 +199,8 @@
             this.Controls.Add(this.SearchTermsGroupBox);
             this.Controls.Add(this.foldersGroupBox);
             this.MinimumSize = new System.Drawing.Size(209, 479);
-            this.Name = "FileSearcherForm";
-            this.Text = "File Searcher";
+            this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.foldersGroupBox.ResumeLayout(false);
             this.SearchTermsGroupBox.ResumeLayout(false);
             this.searchTypeGroupBox.ResumeLayout(false);
