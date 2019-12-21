@@ -68,6 +68,7 @@
             this.addFolderButton.TabIndex = 1;
             this.addFolderButton.Text = "Add";
             this.addFolderButton.UseVisualStyleBackColor = true;
+            this.addFolderButton.Click += new System.EventHandler(this.addFolderButton_Click);
             // 
             // removeFolderButton
             // 
@@ -78,6 +79,7 @@
             this.removeFolderButton.TabIndex = 2;
             this.removeFolderButton.Text = "Remove";
             this.removeFolderButton.UseVisualStyleBackColor = true;
+            this.removeFolderButton.Click += new System.EventHandler(this.removeFolderButton_Click);
             // 
             // foldersListView
             // 
@@ -89,6 +91,7 @@
             this.foldersListView.Size = new System.Drawing.Size(447, 100);
             this.foldersListView.TabIndex = 0;
             this.foldersListView.UseCompatibleStateImageBehavior = false;
+            this.foldersListView.View = System.Windows.Forms.View.Details;
             // 
             // SearchTermsGroupBox
             // 
