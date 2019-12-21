@@ -20,8 +20,30 @@ namespace FileSearcher
 
             Text = AppConfiguration.AppTitle;
 
+            InitializeFileSearcher(folderPaths, searchTerms, searchType);
+            fileSearcher.StartSearchAsync();
+        }
+
+        public void InitializeFileSearcher(IEnumerable<string> folderPaths, IEnumerable<SearchTerm> searchTerms, SearchType searchType)
+        {
             fileSearcher = new FileSearcher(folderPaths, searchTerms, searchType);
-            fileSearcher.StartSearch();
+
+            fileSearcher.ProgressChanged += (object sender, ProgressChangedEventArgs e) =>
+            {
+                progressBar.Value = e.ProgressPercentage;
+                currentFolderLabel.Text = (string)e.UserState;
+            };
+
+            fileSearcher.RunWorkerCompleted += (object sender, RunWorkerCompletedEventArgs e) =>
+            {
+                currentFolderLabel.Text = "All done!";
+                pauseResumeButton.Enabled = false;
+                progressBar.Value = progressBar.Maximum;
+            };
+
+            progressBar.Maximum = 100;
+            progressBar.Step = 1;
+            progressBar.Value = 0;
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -31,7 +53,7 @@ namespace FileSearcher
 
         private void pauseResumeButton_Click(object sender, EventArgs e)
         {
-            
+            fileSearcher.CancelSearch();
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -49,6 +71,8 @@ namespace FileSearcher
             {
                 e.Cancel = true;
             }
+
+            fileSearcher.CancelSearch();
         }
     }
 }
