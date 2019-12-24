@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using FileSearcher.FileSearch;
 using FileSearcher.Configuration;
 using FileSearcher.FileSearch.FileNameMatchingAlgorithms;
 using FileSearcher.FileSearch.SearchAlgorithms;
 using System.IO;
+using FileSearcher.ExtensionMethods;
 
 namespace FileSearcher.Forms
 {
@@ -167,6 +164,20 @@ namespace FileSearcher.Forms
             }
 
             fileSearcher.CancelSearch();
+        }
+
+        private void resultsListView_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            var hitTestInfo = resultsListView.HitTest(e.X, e.Y);
+            var clickedItem = hitTestInfo.Item;
+
+            if (clickedItem == null)
+            {
+                // Nothing was selected, return.
+                return;
+            }
+
+            ((FileInfo)clickedItem.Tag).OpenInFileExplorerAndSelect();
         }
     }
 }

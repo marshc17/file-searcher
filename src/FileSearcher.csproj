@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Configuration\AppConfiguration.cs" />
     <Compile Include="ExtensionMethods\DirectoryInfoExtensionMethods.cs" />
+    <Compile Include="ExtensionMethods\FileInfoExtensionMethods.cs" />
     <Compile Include="FileSearch\FileNameMatchingAlgorithms\FileNameMatchingAlgorithm.cs" />
     <Compile Include="FileSearch\FileNameMatchingAlgorithms\FileNameMatchingAlgorithmFactory.cs" />
     <Compile Include="FileSearch\FileNameMatchingAlgorithms\Alogrithms\RegularExpressionFileNameMatchingAlgorithm.cs" />

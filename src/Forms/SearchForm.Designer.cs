@@ -62,6 +62,7 @@
             this.resultsListView.TabIndex = 2;
             this.resultsListView.UseCompatibleStateImageBehavior = false;
             this.resultsListView.View = System.Windows.Forms.View.Details;
+            this.resultsListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.resultsListView_MouseDoubleClick);
             // 
             // SearchForm
             // 
