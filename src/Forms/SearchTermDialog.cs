@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FileSearcher.FileSearch;
 using FileSearcher.FileSearch.FileNameMatchingAlgorithms;
+using System.Text.RegularExpressions;
+using FileSearcher.Configuration;
 
 namespace FileSearcher.Forms
 {
@@ -47,9 +49,35 @@ namespace FileSearcher.Forms
                 SearchTermType = searchTermTypeGroupBox.GetSelectedRadioButtonAsEnumValueFromTag<SearchTermType>()
             };
 
+            if (SearchTerm.SearchTermType == SearchTermType.RegularExpression)
+            {
+                AlertUserIfRegexIsInvalid(SearchTerm.SearchTermText, out var regexIsValid);
+
+                if (!regexIsValid)
+                {
+                    DialogResult = DialogResult.None;
+                    return;
+                }
+            }
+
             SearchTermTypeUserFriendlyName = searchTermTypeGroupBox.GetSelectedRadioButton().Text;
 
             Close();
+        }
+
+        private void AlertUserIfRegexIsInvalid(string regex, out bool regexIsValid)
+        {
+            regexIsValid = true;
+
+            try
+            {
+                new Regex(regex, RegexOptions.Compiled);
+            }
+            catch (Exception e)
+            {
+                regexIsValid = false;
+                MessageBox.Show($"Regular expression is invalid:{Environment.NewLine}{Environment.NewLine}{e.ToString()}", AppConfiguration.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

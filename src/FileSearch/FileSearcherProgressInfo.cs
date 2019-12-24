@@ -12,11 +12,14 @@ namespace FileSearcher.FileSearch
         public ProgressInfoType Type { get; set; }
 
         /// <summary>
+        /// When Type = PercentProgressUpdated:
+        /// ProgressData is null
+        /// 
         /// When Type = CurrentSearchDirectoryChanged:
-        /// A string value representing the current directory path being searched.
+        /// ProgressData is a string value representing the current directory path being searched.
         /// 
         /// When Type = FileMatchFound:
-        /// A FileInfo object for the file that was matched.
+        /// ProgressData is a FileInfo object for the file that was matched.
         /// </summary>
         public object ProgressData { get; set; }
     }
