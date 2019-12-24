@@ -46,8 +46,6 @@ namespace FileSearcher.FileSearch.SearchAlgorithms.Algorithms
                 {
                     return;
                 }
-
-                System.Threading.Thread.Sleep(1000);
             }
 
             cancelSearch = false;
