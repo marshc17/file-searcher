@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FileSearcher.ExtensionMethods;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,8 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FileSearcher.FileSearch;
+using FileSearcher.Configuration;
+using FileSearcher.FileSearch.SearchAlgorithms;
+using FileSearcher.FileSearch.FileNameMatchingAlgorithms;
 
-namespace FileSearcher
+namespace FileSearcher.Forms
 {
     public partial class MainForm : Form
     {
@@ -18,8 +23,8 @@ namespace FileSearcher
 
             Text = AppConfiguration.AppTitle;
 
-            InitializeListView(foldersListView);
-            InitializeListView(searchTermsListView);
+            InitializeFoldersListView();
+            InitializeSearchTermsListView();
             InitializeRadioButtons();
             UpdateSearchButtonState();
         }
@@ -30,15 +35,24 @@ namespace FileSearcher
             breadthFirstSearchRadioButton.Tag = SearchType.BreadthFirstSearch;
         }
 
-        private void InitializeListView(ListView listView)
+        private void InitializeFoldersListView()
         {
-            listView.Columns.Add(new ColumnHeader()
+            foldersListView.Columns.Add(new ColumnHeader()
             {
                 Text = string.Empty
             });
 
-            listView.HeaderStyle = ColumnHeaderStyle.None;
-            listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            foldersListView.HeaderStyle = ColumnHeaderStyle.None;
+            foldersListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+
+        private void InitializeSearchTermsListView()
+        {
+            searchTermsListView.Columns.Add("Search Term");
+            searchTermsListView.Columns.Add("Type");
+
+            searchTermsListView.HeaderStyle = ColumnHeaderStyle.None;
+            searchTermsListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         private void addFolderButton_Click(object sender, EventArgs e)
@@ -72,11 +86,16 @@ namespace FileSearcher
                 return;
             }
 
-            searchTermsListView.Items.Add(new ListViewItem()
+            searchTermsListView.Items.Add(new ListViewItem(new string[]
             {
-                Text = searchTermDialog.SearchTerm.SearchTermText,
-                Tag = searchTermDialog.SearchTerm
+                searchTermDialog.SearchTerm.SearchTermText,         // Column 1
+                searchTermDialog.SearchTermTypeUserFriendlyName     // Column 2
+            })
+            {
+                Tag = searchTermDialog.SearchTerm                   // Save the actual SearchTerm to the tag behind the scenes to retrieve later
             });
+
+            searchTermsListView.HeaderStyle = ColumnHeaderStyle.Nonclickable;
 
             UpdateSearchButtonState();
         }
@@ -85,6 +104,12 @@ namespace FileSearcher
         {
             RemoveSelectedItemsFromListView(searchTermsListView);
             UpdateSearchButtonState();
+
+            // Hide the headers if the last item was cleared out.
+            if (searchTermsListView.Items.Count == 0)
+            {
+                searchTermsListView.HeaderStyle = ColumnHeaderStyle.None;
+            }
         }
 
         private void RemoveSelectedItemsFromListView(ListView listView)
@@ -107,7 +132,7 @@ namespace FileSearcher
                 .OfType<ListViewItem>()
                 .Select(listViewItem => (SearchTerm)listViewItem.Tag);
 
-            var searchType = searchTypeGroupBox.GetSelectedRadioBoxAsEnumValueFromTag<SearchType>();
+            var searchType = searchTypeGroupBox.GetSelectedRadioButtonAsEnumValueFromTag<SearchType>();
 
             var searchForm = new SearchForm(rootFolderPaths, searchTerms, searchType);
 

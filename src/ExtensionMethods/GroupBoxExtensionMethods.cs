@@ -5,19 +5,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FileSearcher
+namespace FileSearcher.ExtensionMethods
 {
     public static class GroupBoxExtensionMethods
     {
-        public static T GetSelectedRadioBoxAsEnumValueFromTag<T>(this GroupBox groupBox)
+        public static T GetSelectedRadioButtonAsEnumValueFromTag<T>(this GroupBox groupBox)
         {
-            var checkedRadioButton = groupBox
+            var checkedRadioButton = groupBox.GetSelectedRadioButton();
+
+            return (T)checkedRadioButton.Tag;
+        }
+
+        public static RadioButton GetSelectedRadioButton(this GroupBox groupBox)
+        {
+            return groupBox
                 .Controls
                 .OfType<RadioButton>()
                 .Cast<RadioButton>()
                 .First(radioButton => radioButton.Checked);
-
-            return (T)checkedRadioButton.Tag;
         }
     }
 }

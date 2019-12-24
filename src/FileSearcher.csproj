@@ -47,33 +47,51 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppConfiguration.cs" />
-    <Compile Include="FileSearcher.cs" />
-    <Compile Include="GroupBoxExtensionMethods.cs" />
-    <Compile Include="MainForm.cs">
+    <Compile Include="Configuration\AppConfiguration.cs" />
+    <Compile Include="ExtensionMethods\DirectoryInfoExtensionMethods.cs" />
+    <Compile Include="FileSearch\FileNameMatchingAlgorithms\FileNameMatchingAlgorithm.cs" />
+    <Compile Include="FileSearch\FileNameMatchingAlgorithms\FileNameMatchingAlgorithmFactory.cs" />
+    <Compile Include="FileSearch\FileNameMatchingAlgorithms\Alogrithms\RegularExpressionFileNameMatchingAlgorithm.cs" />
+    <Compile Include="FileSearch\FileNameMatchingAlgorithms\Alogrithms\TextFileNameMatchingAlgorithm.cs" />
+    <Compile Include="FileSearch\FileSearcherBackgroundWorker.cs" />
+    <Compile Include="FileSearch\FileSearcherProgressInfo.cs" />
+    <Compile Include="ExtensionMethods\GroupBoxExtensionMethods.cs" />
+    <Compile Include="FileSearch\ProgressInfoType.cs" />
+    <Compile Include="FileSearch\SearchAlgorithms\Algorithms\BreadthFirstFileSearchAlgorithm.cs" />
+    <Compile Include="FileSearch\SearchAlgorithms\Events\CurrentSearchDirectoryChangedEventArgs.cs" />
+    <Compile Include="FileSearch\SearchAlgorithms\Events\CurrentSearchDirectoryChangedEventHandler.cs" />
+    <Compile Include="FileSearch\SearchAlgorithms\Algorithms\DepthFirstFileSearchAlgorithm.cs" />
+    <Compile Include="FileSearch\SearchAlgorithms\Events\FileMatchFoundEventArgs.cs" />
+    <Compile Include="FileSearch\SearchAlgorithms\Events\FileMatchFoundEventHandler.cs" />
+    <Compile Include="FileSearch\SearchAlgorithms\Events\ProgressUpdatedEventArgs.cs" />
+    <Compile Include="FileSearch\SearchAlgorithms\Events\ProgressUpdatedEventHandler.cs" />
+    <Compile Include="FileSearch\SearchAlgorithms\FileSearchAlgorithm.cs" />
+    <Compile Include="FileSearch\SearchAlgorithms\FileSearchAlgorithmBuilder.cs" />
+    <Compile Include="FileSearch\SearchAlgorithms\FileSearchAlgorithmFactory.cs" />
+    <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SearchForm.cs">
+    <Compile Include="Forms\SearchForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SearchForm.Designer.cs">
+    <Compile Include="Forms\SearchForm.Designer.cs">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SearchTerm.cs" />
-    <Compile Include="SearchTermDialog.cs">
+    <Compile Include="FileSearch\FileNameMatchingAlgorithms\SearchTerm.cs" />
+    <Compile Include="Forms\SearchTermDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SearchTermDialog.Designer.cs">
+    <Compile Include="Forms\SearchTermDialog.Designer.cs">
       <DependentUpon>SearchTermDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="SearchTermType.cs" />
-    <Compile Include="SearchType.cs" />
-    <EmbeddedResource Include="MainForm.resx">
+    <Compile Include="FileSearch\FileNameMatchingAlgorithms\SearchTermType.cs" />
+    <Compile Include="FileSearch\SearchAlgorithms\SearchType.cs" />
+    <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -85,10 +103,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SearchForm.resx">
+    <EmbeddedResource Include="Forms\SearchForm.resx">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SearchTermDialog.resx">
+    <EmbeddedResource Include="Forms\SearchTermDialog.resx">
       <DependentUpon>SearchTermDialog.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -102,7 +120,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="Configuration\App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

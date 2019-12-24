@@ -1,4 +1,4 @@
-﻿namespace FileSearcher
+﻿namespace FileSearcher.Forms
 {
     partial class SearchTermDialog
     {

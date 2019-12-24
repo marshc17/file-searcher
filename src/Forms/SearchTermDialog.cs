@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FileSearcher.ExtensionMethods;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,12 +8,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FileSearcher.FileSearch;
+using FileSearcher.FileSearch.FileNameMatchingAlgorithms;
 
-namespace FileSearcher
+namespace FileSearcher.Forms
 {
     public partial class SearchTermDialog : Form
     {
         public SearchTerm SearchTerm { get; set; }
+        public string SearchTermTypeUserFriendlyName { get; set; }
 
         public SearchTermDialog()
         {
@@ -40,8 +44,10 @@ namespace FileSearcher
             SearchTerm = new SearchTerm()
             {
                 SearchTermText = searchTermTextBox.Text,
-                SearchTermType = searchTermTypeGroupBox.GetSelectedRadioBoxAsEnumValueFromTag<SearchTermType>()
+                SearchTermType = searchTermTypeGroupBox.GetSelectedRadioButtonAsEnumValueFromTag<SearchTermType>()
             };
+
+            SearchTermTypeUserFriendlyName = searchTermTypeGroupBox.GetSelectedRadioButton().Text;
 
             Close();
         }

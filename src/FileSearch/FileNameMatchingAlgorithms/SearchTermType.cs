@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileSearcher
+namespace FileSearcher.FileSearch.FileNameMatchingAlgorithms
 {
     public enum SearchTermType
     {
