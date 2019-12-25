@@ -37,7 +37,7 @@ namespace FileSearcher.FileSearch.SearchAlgorithms.Algorithms
                     }
                 }
             }
-            catch (UnauthorizedAccessException) { }
+            catch (Exception e) when (e is UnauthorizedAccessException || e is PathTooLongException) { }
 
             // Once the subdirectories are searched, search the files in this directory.
             try
@@ -54,7 +54,7 @@ namespace FileSearcher.FileSearch.SearchAlgorithms.Algorithms
                     }
                 }
             }
-            catch (UnauthorizedAccessException) { }
+            catch (Exception e) when (e is UnauthorizedAccessException || e is PathTooLongException) { }
 
             cancelSearch = false;
         }
