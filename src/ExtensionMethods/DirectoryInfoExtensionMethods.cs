@@ -42,5 +42,36 @@ namespace FileSearcher.ExtensionMethods
             // this command produces error output when a directory is not a symlink.
             return !standardOutput.Contains("Error:");
         }
+
+        public static long CountFiles(this DirectoryInfo directoryInfo)
+        {
+            long fileCount = 0;
+
+            // Exceptions are swallowed below simply to move on when we get UnauthorizedAccessException
+            // or any other exception that wouldn't prevent us from counting the majority of files under
+            // this directory. This method is designed ot count as many files as possible without being
+            // fragile or terminated early and losing files in the count.
+
+            try
+            {
+                fileCount = directoryInfo.GetFiles().LongLength;
+            }
+            catch { }
+
+            // Do this in a separate try-catch to isolate failure as much as possible.
+            // If there's a permissions issue with a particular file in this directory
+            // but we can still dig deeper into sub-directories we want to not fail to
+            // do so due to receiving an exception from that file.
+            try
+            {
+                foreach (var subDirectoryInfo in directoryInfo.GetDirectories())
+                {
+                    fileCount += CountFiles(subDirectoryInfo);
+                }
+            }
+            catch { }
+
+            return fileCount;
+        }
     }
 }

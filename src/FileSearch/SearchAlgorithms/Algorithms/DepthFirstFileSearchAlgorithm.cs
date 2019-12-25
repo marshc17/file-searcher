@@ -17,36 +17,44 @@ namespace FileSearcher.FileSearch.SearchAlgorithms.Algorithms
         protected override void SearchDirectory(DirectoryInfo directoryInfo, out bool cancelSearch)
         {
             // Do "depth-first" by diving into all the sub-directories before checking this directory.
-            var subDirectories = directoryInfo.GetDirectories();
-
-            foreach (var subDirectory in subDirectories)
+            try
             {
-                // Skip over symlinks to avoid potential circular loops.
-                if (subDirectory.IsSymLink())
-                {
-                    continue;
-                }
+                var subDirectories = directoryInfo.GetDirectories();
 
-                SearchDirectory(subDirectory, out cancelSearch);
-
-                if (cancelSearch)
+                foreach (var subDirectory in subDirectories)
                 {
-                    return;
+                    // Skip over symlinks to avoid potential circular loops.
+                    if (subDirectory.IsSymLink())
+                    {
+                        continue;
+                    }
+
+                    SearchDirectory(subDirectory, out cancelSearch);
+
+                    if (cancelSearch)
+                    {
+                        return;
+                    }
                 }
             }
+            catch (UnauthorizedAccessException) { }
 
             // Once the subdirectories are searched, search the files in this directory.
-            var files = directoryInfo.GetFiles();
-
-            foreach (var fileInfo in files)
+            try
             {
-                ProcessFile(fileInfo, out cancelSearch);
-                
-                if (cancelSearch)
+                var files = directoryInfo.GetFiles();
+
+                foreach (var fileInfo in files)
                 {
-                    return;
+                    ProcessFile(fileInfo, out cancelSearch);
+
+                    if (cancelSearch)
+                    {
+                        return;
+                    }
                 }
             }
+            catch (UnauthorizedAccessException) { }
 
             cancelSearch = false;
         }

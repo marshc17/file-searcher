@@ -60,15 +60,15 @@ namespace FileSearcher.Forms
             switch (fileSearcherProgressInfo.Type)
             {
                 case ProgressInfoType.PercentProgressUpdated:
-                    HandlePercentProgressUpdate(e);
+                    HandlePercentProgressUpdate(e.ProgressPercentage, fileSearcherProgressInfo.ProgressData);
                     break;
 
                 case ProgressInfoType.CurrentSearchDirectoryChanged:
-                    HandleCurrentSearchDirectoryChanged(fileSearcherProgressInfo);
+                    HandleCurrentSearchDirectoryChanged(fileSearcherProgressInfo.ProgressData);
                     break;
 
                 case ProgressInfoType.FileMatchFound:
-                    HandleFileMatchFound(fileSearcherProgressInfo);
+                    HandleFileMatchFound(fileSearcherProgressInfo.ProgressData);
                     break;
 
                 default:
@@ -76,19 +76,26 @@ namespace FileSearcher.Forms
             }
         }
 
-        private void HandlePercentProgressUpdate(ProgressChangedEventArgs e)
+        private void HandlePercentProgressUpdate(int progressPercentage, object progressData)
         {
-            progressBar.Value = e.ProgressPercentage;
+            var percentProgressType = (PercentProgressType)progressData;
+
+            if (percentProgressType == PercentProgressType.CountingFiles)
+            {
+                statusLabel.Text = "Counting files...";
+            }
+
+            progressBar.Value = progressPercentage;
         }
 
-        private void HandleCurrentSearchDirectoryChanged(FileSearcherProgressInfo fileSearcherProgressInfo)
+        private void HandleCurrentSearchDirectoryChanged(object progressData)
         {
-            currentFolderLabel.Text = (string)fileSearcherProgressInfo.ProgressData;
+            statusLabel.Text = (string)progressData;
         }
 
-        private void HandleFileMatchFound(FileSearcherProgressInfo fileSearcherProgressInfo)
+        private void HandleFileMatchFound(object progressData)
         {
-            var fileInfo = (FileInfo)fileSearcherProgressInfo.ProgressData;
+            var fileInfo = (FileInfo)progressData;
 
             resultsListView.Items.Add(new ListViewItem(new string[]
             {
@@ -130,12 +137,12 @@ namespace FileSearcher.Forms
             if (e.Result is Exception)
             {
                 MessageBox.Show(e.Result.ToString(), AppConfiguration.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                currentFolderLabel.ForeColor = Color.Red;
-                currentFolderLabel.Text = "Search aborted prematurely!";
+                statusLabel.ForeColor = Color.Red;
+                statusLabel.Text = "Search aborted prematurely!";
             }
             else
             {
-                currentFolderLabel.Text = "All done!";
+                statusLabel.Text = "All done!";
             }
             
             progressBar.Value = progressBar.Maximum;

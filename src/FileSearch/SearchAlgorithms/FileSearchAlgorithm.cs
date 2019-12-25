@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FileSearcher.FileSearch.SearchAlgorithms.Events;
 using FileSearcher.FileSearch.SearchAlgorithms.Algorithms;
+using FileSearcher.ExtensionMethods;
 
 namespace FileSearcher.FileSearch.SearchAlgorithms
 {
@@ -30,8 +31,14 @@ namespace FileSearcher.FileSearch.SearchAlgorithms
 
         public void Run(IEnumerable<DirectoryInfo> rootFolders)
         {
-            totalFileCount = GetTotalFileCount(rootFolders);
+            // Report out that we're in the "counting files" stage.
+            ProgressUpdated?.Invoke(this, new ProgressUpdatedEventArgs(PercentProgressType.CountingFiles));
+
+            totalFileCount = rootFolders.Sum(rootFolder => rootFolder.CountFiles());
             currentFileCount = 0;
+
+            // Report out that we just started the "searching" stage.
+            ProgressUpdated?.Invoke(this, new ProgressUpdatedEventArgs(PercentProgressType.Searching, 0));
 
             // Implement the alogirthm separately for each root directory.
             foreach (var directoryInfo in rootFolders)
@@ -79,16 +86,7 @@ namespace FileSearcher.FileSearch.SearchAlgorithms
 
             var percentage = (int)((currentFileCount * PercentageMaximum) / totalFileCount);
 
-            ProgressUpdated?.Invoke(this, new ProgressUpdatedEventArgs(percentage));
-        }
-
-        private long GetTotalFileCount(IEnumerable<DirectoryInfo> rootFolders)
-        {
-            // Count the files across all the directories to search
-            return rootFolders
-                .AsParallel()
-                .SelectMany(rootFolder => rootFolder.EnumerateFiles("*", SearchOption.AllDirectories))
-                .Count();
+            ProgressUpdated?.Invoke(this, new ProgressUpdatedEventArgs(PercentProgressType.Searching, percentage));
         }
 
         private void HandleDirectoryChanges(FileInfo fileInfo)

@@ -13,7 +13,7 @@ namespace FileSearcher.FileSearch
 
         /// <summary>
         /// When Type = PercentProgressUpdated:
-        /// ProgressData is null
+        /// ProgressData is a PercentProgressType enum value representing the type of percentage progress being reported.
         /// 
         /// When Type = CurrentSearchDirectoryChanged:
         /// ProgressData is a string value representing the current directory path being searched.

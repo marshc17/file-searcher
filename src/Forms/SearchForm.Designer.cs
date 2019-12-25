@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.progressBar = new System.Windows.Forms.ProgressBar();
-            this.currentFolderLabel = new System.Windows.Forms.Label();
+            this.statusLabel = new System.Windows.Forms.Label();
             this.resultsListView = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
@@ -44,12 +44,12 @@
             // 
             // currentFolderLabel
             // 
-            this.currentFolderLabel.AutoSize = true;
-            this.currentFolderLabel.Location = new System.Drawing.Point(12, 38);
-            this.currentFolderLabel.Name = "currentFolderLabel";
-            this.currentFolderLabel.Size = new System.Drawing.Size(16, 13);
-            this.currentFolderLabel.TabIndex = 1;
-            this.currentFolderLabel.Text = "...";
+            this.statusLabel.AutoSize = true;
+            this.statusLabel.Location = new System.Drawing.Point(12, 38);
+            this.statusLabel.Name = "currentFolderLabel";
+            this.statusLabel.Size = new System.Drawing.Size(16, 13);
+            this.statusLabel.TabIndex = 1;
+            this.statusLabel.Text = "...";
             // 
             // resultsListView
             // 
@@ -70,7 +70,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 361);
             this.Controls.Add(this.resultsListView);
-            this.Controls.Add(this.currentFolderLabel);
+            this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.progressBar);
             this.MinimumSize = new System.Drawing.Size(200, 200);
             this.Name = "SearchForm";
@@ -83,7 +83,7 @@
         #endregion
 
         private System.Windows.Forms.ProgressBar progressBar;
-        private System.Windows.Forms.Label currentFolderLabel;
+        private System.Windows.Forms.Label statusLabel;
         private System.Windows.Forms.ListView resultsListView;
     }
 }

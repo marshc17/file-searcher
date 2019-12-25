@@ -8,11 +8,16 @@ namespace FileSearcher.FileSearch.SearchAlgorithms.Events
 {
     public class ProgressUpdatedEventArgs : EventArgs
     {
-        public int PercentComplete { get; }
+        public PercentProgressType Type { get; }
+        public int? PercentComplete { get; }
 
-        public ProgressUpdatedEventArgs(int percentComplete)
+        public ProgressUpdatedEventArgs(PercentProgressType type, int? percentComplete)
         {
+            Type = type;
             PercentComplete = percentComplete;
         }
+
+        public ProgressUpdatedEventArgs(PercentProgressType type)
+            : this(type, null) { }
     }
 }

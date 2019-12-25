@@ -113,10 +113,10 @@ namespace FileSearcher.FileSearch
 
         private void ProgressUpdated(object sender, ProgressUpdatedEventArgs e)
         {
-            backgroundWorker.ReportProgress(e.PercentComplete, new FileSearcherProgressInfo()
+            backgroundWorker.ReportProgress(e.PercentComplete ?? 0, new FileSearcherProgressInfo()
             {
                 Type = ProgressInfoType.PercentProgressUpdated,
-                ProgressData = null
+                ProgressData = e.Type
             });
         }
 

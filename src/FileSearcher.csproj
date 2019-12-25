@@ -57,6 +57,7 @@
     <Compile Include="FileSearch\FileSearcherBackgroundWorker.cs" />
     <Compile Include="FileSearch\FileSearcherProgressInfo.cs" />
     <Compile Include="ExtensionMethods\GroupBoxExtensionMethods.cs" />
+    <Compile Include="FileSearch\PercentProgressType.cs" />
     <Compile Include="FileSearch\ProgressInfoType.cs" />
     <Compile Include="FileSearch\SearchAlgorithms\Algorithms\BreadthFirstFileSearchAlgorithm.cs" />
     <Compile Include="FileSearch\SearchAlgorithms\Events\CurrentSearchDirectoryChangedEventArgs.cs" />
